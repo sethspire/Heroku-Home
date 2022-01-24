@@ -2,7 +2,7 @@
   "name": "heroku-home",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
@@ -14,5 +14,8 @@
   },
   "dependencies": {
     "express": "^4.17.2"
-  }
+  },
+  "nodemonConfig": {
+    "ext": "js,html,css"
+}
 }
