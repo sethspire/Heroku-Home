@@ -50,6 +50,6 @@ footer div {
     margin: 3em 0;
 }
 
-#bio {
-    margin: auto 0;
+.center-all {
+    margin: auto auto;
 }
