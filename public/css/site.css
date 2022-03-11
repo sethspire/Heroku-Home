@@ -23,6 +23,11 @@ nav a:hover {
     color: var(--clr-accent-dark);
 }
 
+nav .account-dropdown {
+    color: var(--clr-accent-light);
+    font-size: 1.25rem;
+}
+
 footer {
     margin-top: auto;
     min-height: 3em;
