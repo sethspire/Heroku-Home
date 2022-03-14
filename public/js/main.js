@@ -8,7 +8,6 @@ const modifyAccountModalSaveButton = document.querySelector("#modifyAccountModal
 
 // display account
 displayAccountBtn.addEventListener("click", async(e) => {
-    console.log("event listened")
     e.preventDefault()
 
     const token = localStorage.getItem("token")
@@ -120,11 +119,12 @@ modifyAccountModalSaveButton.addEventListener("click", async(e) => {
 
     let response = await fetch(url, options)
 
+    const contentArea = document.querySelector("#accountDisplayArea")
     if (response.status === 200) {
-        const contentArea = document.querySelector("#accountDisplayArea")
         contentArea.innerHTML = `Change successful.`
     } else {
         console.log("HTTP-Error: " + response.status)
+        contentArea.innerHTML = `Change NOT successful. Check inputs.`
     }
 
     const modal = document.querySelector("#modifyAccountModal")
