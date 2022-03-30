@@ -1,6 +1,6 @@
-const protocol = window.location.protocol
-const host = window.location.host
-const dbURL = (host.split(":",1)[0] === "localhost") ? "http://localhost:3001" : "https://sethspire-api.herokuapp.com"
+window.protocol = window.location.protocol
+window.host = window.location.host
+window.dbURL = (host.split(":",1)[0] === "localhost") ? "http://localhost:3001" : "https://sethspire-api.herokuapp.com"
 
 const displayAccountBtn = document.querySelector("#displayAccountBtn")
 const deleteAccountBtn = document.querySelector("#deleteAccountBtn")
