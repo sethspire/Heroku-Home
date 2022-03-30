@@ -29,7 +29,6 @@ displayAccountBtn.addEventListener("click", async(e) => {
     if (response.ok) {
         if (response.status === 200) {
             const data = await response.json()
-
             const accountDisplayName = document.querySelector("#accountDisplayName")
             const accountDisplayEmail = document.querySelector("#accountDisplayEmail")
             accountDisplayName.textContent = data.name
