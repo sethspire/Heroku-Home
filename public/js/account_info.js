@@ -30,8 +30,10 @@ displayAccountBtn.addEventListener("click", async(e) => {
         if (response.status === 200) {
             const data = await response.json()
 
-            const contentArea = document.querySelector("#accountDisplayArea")
-            contentArea.innerHTML = `Name: ${data.name} <br>Email: ${data.email}`
+            const accountDisplayName = document.querySelector("#accountDisplayName")
+            const accountDisplayEmail = document.querySelector("#accountDisplayEmail")
+            accountDisplayName.textContent = data.name
+            accountDisplayEmail.textContent = data.email
         }
     } else {
         console.log("HTTP-Error: " + response.status)
