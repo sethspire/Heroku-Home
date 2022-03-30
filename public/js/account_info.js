@@ -1,5 +1,6 @@
 const protocol = window.location.protocol
 const host = window.location.host
+const dbURL = (host.split(":",1)[0] === "localhost") ? "http://localhost:3001" : "https://sethspire-api.herokuapp.com"
 
 const displayAccountBtn = document.querySelector("#displayAccountBtn")
 const deleteAccountBtn = document.querySelector("#deleteAccountBtn")
@@ -13,7 +14,8 @@ displayAccountBtn.addEventListener("click", async(e) => {
     const token = localStorage.getItem("token")
 
     //const url = "http://localhost:3001/users/me"
-    const url = 'https://sethspire-api.herokuapp.com/users/me'
+    //const url = 'https://sethspire-api.herokuapp.com/users/me'
+    const url = `${dbURL}/users/me`
 
     const options = {
         method: "GET",
@@ -23,7 +25,7 @@ displayAccountBtn.addEventListener("click", async(e) => {
     }
 
     let response = await fetch(url, options)
-
+    
     if (response.ok) {
         if (response.status === 200) {
             const data = await response.json()
@@ -33,6 +35,10 @@ displayAccountBtn.addEventListener("click", async(e) => {
         }
     } else {
         console.log("HTTP-Error: " + response.status)
+        if (response.status === 401) {
+            const newUrl = `${protocol}//${host}/login`
+            window.location.replace(newUrl)
+        }
     }
 })
 
@@ -43,7 +49,8 @@ deleteAccountBtn.addEventListener("click", async(e) => {
     const token = localStorage.getItem("token")
 
     //const url = "http://localhost:3001/users/me"
-    const url = 'https://sethspire-api.herokuapp.com/users/me'
+    //const url = 'https://sethspire-api.herokuapp.com/users/me'
+    const url = `${dbURL}/users/me`
 
     const options = {
         method: "DELETE",
@@ -61,6 +68,10 @@ deleteAccountBtn.addEventListener("click", async(e) => {
         }
     } else {
         console.log("HTTP-Error: " + response.status)
+        if (response.status === 401) {
+            const newUrl = `${protocol}//${host}/login`
+            window.location.replace(newUrl)
+        }
     }
 })
 
@@ -71,7 +82,8 @@ logOutBtn.addEventListener("click", async(e) => {
     const token = localStorage.getItem("token")
 
     //const url = "http://localhost:3001/users/logout"
-    const url = 'https://sethspire-api.herokuapp.com/users/logout'
+    //const url = 'https://sethspire-api.herokuapp.com/users/logout'
+    const url = `${dbURL}/users/logout`
 
     const options = {
         method: "POST",
@@ -89,6 +101,10 @@ logOutBtn.addEventListener("click", async(e) => {
         }
     } else {
         console.log("HTTP-Error: " + response.status)
+        if (response.status === 401) {
+            const newUrl = `${protocol}//${host}/login`
+            window.location.replace(newUrl)
+        }
     }
 })
 
@@ -99,7 +115,8 @@ modifyAccountModalSaveButton.addEventListener("click", async(e) => {
     const token = localStorage.getItem("token")
 
     //const url = "http://localhost:3001/users/me"
-    const url = 'https://sethspire-api.herokuapp.com/users/me'
+    //const url = 'https://sethspire-api.herokuapp.com/users/me'
+    const url = `${dbURL}/users/me`
 
     const nameInput = document.querySelector("#nameInput")
     const passwordInput = document.querySelector("#passwordInput")
@@ -125,6 +142,10 @@ modifyAccountModalSaveButton.addEventListener("click", async(e) => {
     } else {
         console.log("HTTP-Error: " + response.status)
         contentArea.innerHTML = `Change NOT successful. Check inputs.`
+        if (response.status === 401) {
+            const newUrl = `${protocol}//${host}/login`
+            window.location.replace(newUrl)
+        }
     }
 
     const modal = document.querySelector("#modifyAccountModal")

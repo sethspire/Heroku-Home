@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    {{>head}}
+    <script defer src="/js/tasks.js"></script>
+</head>
+
+<body>
+    {{>navbar_logged_in}}
+
+    <main>
+        <div class="container">
+            <h1>TASKS</h1>
+            <br>
+            <div id="taskArea">
+                <div id="tasksDisplayArea"></div>
+                <br>
+                <button type="button" class="btn btn-light" id="showNextTask">Show Next Task</button>
+            </div>
+        </div>
+    </main>
+
+    {{>footer}}
+
+</body>
+
+</html>

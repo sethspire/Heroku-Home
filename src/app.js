@@ -6,7 +6,9 @@ const indexRouter = require('../routers/index')
 const about_meRouter = require('../routers/about-me')
 const create_accountRouter = require('../routers/create-account') 
 const loginRouter = require('../routers/login') 
-const mainRouter = require('../routers/main') 
+const mainRouter = require('../routers/main')
+const tasksRouter = require('../routers/tasks')
+
 const _404Router = require('../routers/404')
 
 const app = express() 
@@ -27,6 +29,8 @@ app.use(about_meRouter)
 app.use(create_accountRouter)
 app.use(loginRouter)
 app.use(mainRouter)
+app.use(tasksRouter)
+
 app.use(_404Router) 
 
 const port = process.env.PORT || 3000 

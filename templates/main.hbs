@@ -2,7 +2,7 @@
 <html>
 <head>
     {{>head}}
-    <script defer src="/js/main.js"></script>
+    <script defer src="/js/account_info.js"></script>
 </head>
 
 <body>
@@ -10,17 +10,23 @@
 
     <main>
         <div class="container">
-            <h3>Thank you for logging in</h3>
-        </div>
+            <div >
+                <h3>Welcome!</h3>
+            </div>
 
-        <br>
-        
-        <div class="container">
-            <p id="accountDisplayArea"></p>
+            <br>
+
+            <div>
+                <h4><a href="/tasks">View Tasks Here</a></h4>
+            </div>
+
+            <br>
+            
+            <div>
+                <p id="accountDisplayArea"></p>
+            </div>
         </div>
     </main>
-
-    {{>modify_account_modal}}
 
     {{>footer}}
 

@@ -1,5 +1,6 @@
 const protocol = window.location.protocol
 const host = window.location.host
+const dbURL = (host.split(":",1)[0] === "localhost") ? "http://localhost:3001" : "https://sethspire-api.herokuapp.com"
 
 const createAccountForm = document.querySelector('#createAccountForm')
 const emailInput = document.querySelector('#email')
@@ -16,7 +17,8 @@ createAccountForm.addEventListener('submit', async(e) => {
     let data = { email, password, name }
 
     //const url = 'http://localhost:3001/users'
-    const url = 'https://sethspire-api.herokuapp.com/users'
+    //const url = 'https://sethspire-api.herokuapp.com/users'
+    const url = `${dbURL}/users`
 
     const options = {
         method: 'POST',
