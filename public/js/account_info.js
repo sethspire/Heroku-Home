@@ -139,18 +139,16 @@ modifyAccountModalSaveButton.addEventListener("click", async(e) => {
 
     const contentArea = document.querySelector("#accountDisplayArea")
     if (response.status === 200) {
-        contentArea.innerHTML = `Change successful.`
+        alert('Change successful.')
+        const modal = document.querySelector("#modifyAccountModal")
+        bootstrap.Modal.getInstance(modal).hide()
+        document.querySelector("#modifyAccountForm").reset()
     } else {
         console.log("HTTP-Error: " + response.status)
-        contentArea.innerHTML = `Change NOT successful. Check inputs.`
+        alert('Change NOT successful. Check inputs.')
         if (response.status === 401) {
             const newUrl = `${protocol}//${host}/login`
             window.location.replace(newUrl)
         }
     }
-
-    const modal = document.querySelector("#modifyAccountModal")
-    bootstrap.Modal.getInstance(modal).hide()
-
-    const form = document.querySelector("#modifyAccountForm").reset()
 })
