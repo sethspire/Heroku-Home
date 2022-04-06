@@ -58,3 +58,10 @@ footer div {
 .center-all {
     margin: auto auto;
 }
+
+.task-mod-btn {
+    font-family: var(--ff-content);
+    font-size: 1.9rem;
+    line-height: 1.5rem;
+    width: 3.5rem;
+}

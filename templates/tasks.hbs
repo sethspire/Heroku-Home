@@ -14,38 +14,78 @@
             <h1>TASKS</h1>
             <br>
             <div id="taskArea">
+
                 <div>
                     <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#createTaskModal">Create New Task</button>
-                    <button type="button" class="btn btn-light" id="showNextTask">Show Next Task</button>
+                    <button type="button" class="btn btn-light" id="showNextTask">Show More Tasks</button>
+                    <form id="displayOptionForm" style="display: inline-block;">
+                        <select name="display" id="displayOption" class="form-select" style="display: inline-block; width:fit-content">
+                            <option value="all">ALL</option>
+                            <option value="unfinished">UNFINISHED</option>
+                            <option value="finished">FINISHED</option>
+                        </select>
+                    </form>
                 </div>
                 <br>
                 <div id="tasksDisplayArea"></div>
+                <br>
 
                 <div class="modal fade" id="createTaskModal" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Create New Task</h5>
+                                <h5 class="modal-title"><strong>Create New Task</strong></h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <form id="createTaskForm">
                                     <div class="mb-3">
-                                        <label for="titleInput" class="form-label">Title</label>
+                                        <label for="titleInput" class="form-label"><strong>Title</strong></label>
                                         <input id="titleInput" type="text" class="form-control">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="descInput" class="form-label">Description</label>
+                                        <label for="descInput" class="form-label"><strong>Description</strong></label>
                                         <input id="descInput" type="text" class="form-control">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="completedInput" class="form-label">Completed?</label>
+                                        <label for="completedInput" class="form-label"><strong>Completed?</strong></label>
                                         <input id="completedInput" type="checkbox" style="transform:scale(1.3)">
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button id="createTaskModalButton" type="button" class="btn btn-primary">Create Task</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modifyTaskModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title"><strong>Modify Task</strong></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="modifyTaskForm">
+                                    <div class="mb-3">
+                                        <label for="titleEdit" class="form-label"><strong>Title</strong></label>
+                                        <input id="titleEdit" type="text" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="descEdit" class="form-label"><strong>Description</strong></label>
+                                        <input id="descEdit" type="text" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="completedEdit" class="form-label"><strong>Completed?</strong></label>
+                                        <input id="completedEdit" type="checkbox" style="transform:scale(1.3)">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <p id="saveModalErrorInfo"> </p>
+                                <button id="saveTaskModalButton" type="button" class="btn btn-primary">Save Task</button>
                             </div>
                         </div>
                     </div>
