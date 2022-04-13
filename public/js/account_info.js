@@ -113,6 +113,11 @@ logOutBtn.addEventListener("click", async(e) => {
 modifyAccountModalSaveButton.addEventListener("click", async(e) => {
     e.preventDefault()
 
+    if( document.getElementById("avatarInput").files.length != 0 ) {
+        //console.log("from form:", document.getElementById("avatarInput").files[0])
+        uploadAvatar()
+    }
+
     const token = localStorage.getItem("token")
 
     //const url = "http://localhost:3001/users/me"
@@ -152,3 +157,66 @@ modifyAccountModalSaveButton.addEventListener("click", async(e) => {
         }
     }
 })
+
+// upload avatar
+async function uploadAvatar() {
+    const token = localStorage.getItem("token")
+
+    const url = `${dbURL}/users/me/avatar`
+    //console.log(url)
+    
+    const input = document.querySelector("#avatarInput")
+
+    let formData = new FormData();
+    formData.append("avatar", input.files[0]);
+    console.log("formData: ", formData)
+    console.log("input.files[0]", input.files[0])
+    const options = {
+        method: "POST",
+        body: formData,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    let response = await fetch(url, options)
+
+    if (response.status === 200) {
+        console.log("upload successful")
+        //loadAvatar()
+    } else {
+        console.log("Error uploading avatar: " + response.status)
+    }
+}
+
+// get avatar
+async function loadAvatar() {
+    const token = localStorage.getItem("token")
+
+    const url = `${dbURL}/users/me/avatar`
+
+    const options = {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    let response = await fetch(url, options)
+
+    if (response.status === 200) {
+        
+        const imageBlob = await response.blob()
+        const imageObjectURL = URL.createObjectURL(imageBlob);
+
+        const image = document.createElement('img')
+        image.src = imageObjectURL
+        image.className = 'profile-pic'
+
+        const container = document.getElementById("dropdownMenuButton1")
+        container.prepend(image)
+    }
+    else {
+        console.log("HTTP-Error: " + response.status)
+    }
+}
