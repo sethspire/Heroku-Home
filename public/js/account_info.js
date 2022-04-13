@@ -169,8 +169,8 @@ async function uploadAvatar() {
 
     let formData = new FormData();
     formData.append("avatar", input.files[0]);
-    console.log("formData: ", formData)
-    console.log("input.files[0]", input.files[0])
+    //console.log("formData: ", formData)
+    //console.log("input.files[0]", input.files[0])
     const options = {
         method: "POST",
         body: formData,
@@ -183,7 +183,7 @@ async function uploadAvatar() {
 
     if (response.status === 200) {
         console.log("upload successful")
-        //loadAvatar()
+        loadAvatar()
     } else {
         console.log("Error uploading avatar: " + response.status)
     }
@@ -205,13 +205,19 @@ async function loadAvatar() {
     let response = await fetch(url, options)
 
     if (response.status === 200) {
-        
+        //remove previous image if any
+        const oldImg = document.getElementById("profile-pic")
+        if (oldImg != null) {
+            oldImg.remove()
+        }
+
+        //add new image
         const imageBlob = await response.blob()
         const imageObjectURL = URL.createObjectURL(imageBlob);
 
         const image = document.createElement('img')
         image.src = imageObjectURL
-        image.className = 'profile-pic'
+        image.id = "profile-pic"
 
         const container = document.getElementById("dropdownMenuButton1")
         container.prepend(image)
@@ -220,3 +226,5 @@ async function loadAvatar() {
         console.log("HTTP-Error: " + response.status)
     }
 }
+
+loadAvatar()
